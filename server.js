@@ -171,18 +171,41 @@ server.put("/projects/:id", (req, res) => {
 });
 
 // delete project
-server.delete("/actions/:id", (req, res) => {
+server.delete("/projects/:id", (req, res) => {
   const { id } = req.params;
-  actions
+  projects
     .remove(id)
-    .then(action => {
-      res.status(200).json(action);
+    .then(project => {
+      res.status(200).json(project);
     })
     .catch(err => {
       res
         .status(500)
-        .json({ message: "There was an error deleting the action" });
+        .json({ message: "There was an error deleting the project" });
     });
 });
 
+// get projects -> actions (actions are nested in projects)
+//does order matter here??
+server.get("/actions/projects/:id", (req, res) => {
+  const { id } = req.params;
+  projects
+    .getProjectActions(id)
+    // ^ from module exports in projectModel.js
+    .then(actions => {
+      if (actions) {
+        res.status(200).json(actions);
+      } else {
+        res.status(404).json({
+          message: "this project does not have actions"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: "Error getting project actions",
+        err
+      });
+    });
+});
 module.exports = server;
