@@ -103,4 +103,51 @@ server.delete("/actions/:id", (req, res) => {
 
 //PROJECTS
 
+// get all of the projects
+server.get("/projects", (req, res) => {
+  projects
+    .get()
+    .then(projects => {
+      res.status(200).json(projects);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: "Error getting action information!", err });
+    });
+});
+
+//projects by id
+server.get("/projects/:id", (req, res) => {
+  const { id } = req.params;
+  projects
+    .get(id)
+    .then(project => {
+      if (project) {
+        res.status(200).json(project);
+      } else {
+        res
+          .status(404)
+          .json({ message: "There is no action with the specified ID!" });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ message: "error", err });
+    });
+});
+
+//post new project
+server.post("/projects", (req, res) => {
+  projects
+    .insert(req.body)
+    .then(project => {
+      res.status(201).json(action);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: "There was an error creating a new action" });
+    });
+});
+
 module.exports = server;
