@@ -141,12 +141,47 @@ server.post("/projects", (req, res) => {
   projects
     .insert(req.body)
     .then(project => {
-      res.status(201).json(action);
+      res.status(201).json(project);
     })
     .catch(err => {
       res
         .status(500)
-        .json({ message: "There was an error creating a new action" });
+        .json({ message: "There was an error creating a new project" });
+    });
+});
+
+// update project **ERRORS**
+server.put("/projects/:id", (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+  actions
+    .update(id, changes)
+    .then(project => {
+      if (project) {
+        res.status(200).json({ message: "project has been updated!" });
+      } else {
+        res
+          .status(500)
+          .json({ message: "There was an error updating the project!" });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error updating the project!", err });
+    });
+});
+
+// delete project
+server.delete("/actions/:id", (req, res) => {
+  const { id } = req.params;
+  actions
+    .remove(id)
+    .then(action => {
+      res.status(200).json(action);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: "There was an error deleting the action" });
     });
 });
 
