@@ -154,7 +154,7 @@ server.post("/projects", (req, res) => {
 server.put("/projects/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
-  actions
+  projects
     .update(id, changes)
     .then(project => {
       if (project) {
