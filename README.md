@@ -26,11 +26,15 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [x] Mention two parts of Express that you learned about this week.
 
+custom middleware, routing, helpers
+
 - [x] Describe Middleware?
 
 middleware can be added to the application to add extra functionality and extends Express' features
 
-- [ ] Describe a Resource?
+- [x] Describe a Resource?
+
+information stored in the database or to be added to the database
 
 - [x] What can the API return to help clients know if a request was successful?
 
@@ -42,18 +46,18 @@ Error and status codes
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your _Project Manager_ as collaborator on Github.
-- [ ] Clone your forked version of the Repository.
-- [ ] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
-- [ ] Implement the project on this Branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
+- [x] Create a forked copy of this project.
+- [x] Add your _Project Manager_ as collaborator on Github.
+- [x] Clone your forked version of the Repository.
+- [x] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
+- [x] Implement the project on this Branch, committing changes regularly.
+- [x] Push commits: git push origin `<firstName-lastName>`.
 
 Follow these steps for completing your project.
 
-- [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into master on your fork. **Please don't merge your own pull request.**
-- [ ] Add your _Project Manager_ as a Reviewer on the Pull-request
-- [ ] Your _Project Manager_ will count the challenge as done by merging the branch into _master_.
+- [x] Submit a Pull-Request to merge <firstName-lastName> Branch into master on your fork. **Please don't merge your own pull request.**
+- [x] Add your _Project Manager_ as a Reviewer on the Pull-request
+- [x] Your _Project Manager_ will count the challenge as done by merging the branch into _master_.
 
 ## Database Persistence Helpers
 
@@ -61,7 +65,7 @@ Please read the following before implementing the Minimum Viable Product:
 
 The `/data/helpers` folder includes files you can use to manage the persistence of _project_ and _action_ data. These files are `projectModel.js` and `actionModel.js`. Both files publish the following api, which you can use to store, modify and retrieve each resource:
 
-**All these helper methods return a promise. Please you .then().catch() or async/await**
+**All these helper methods return a promise. Please use .then().catch() or async/await**
 
 - `get()`: calling get returns an array of all the resources contained in the database. If you pass an `id` to this method it will return the resource with that id if one is found.
 - `insert()`: calling insert passing it a resource object will add it to the database and return the newly created resource.
