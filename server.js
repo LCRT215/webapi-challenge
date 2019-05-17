@@ -53,7 +53,6 @@ server.get("/actions/:id", (req, res) => {
 });
 
 //post new action
-
 server.post("/actions", (req, res) => {
   actions
     .insert(req.body)
@@ -64,6 +63,41 @@ server.post("/actions", (req, res) => {
       res
         .status(500)
         .json({ message: "There was an error creating a new action" });
+    });
+});
+
+// update action
+server.put("/actions/:id", (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+  actions
+    .update(id, changes)
+    .then(action => {
+      if (action) {
+        res.status(200).json({ message: "Action has been updated!" });
+      } else {
+        res
+          .status(500)
+          .json({ message: "There was an error updating the action!" });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error updating the action!", err });
+    });
+});
+
+// delete action
+server.delete("/actions/:id", (req, res) => {
+  const { id } = req.params;
+  actions
+    .remove(id)
+    .then(action => {
+      res.status(200).json(action);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: "There was an error deleting the action" });
     });
 });
 
